@@ -40,5 +40,18 @@ namespace SampleMvcContacts.Controllers
 
             return View(names);
         }
+
+
+
+        /// <summary>
+        /// About page shows what this application is about
+        /// </summary>
+        /// <returns>ViewResult</returns>
+        public ActionResult About()
+        {
+            ViewBag.Message = "This is takashi's solution to Deck Commerce DEVELOPER SCREENING MVC APPLICATION.";
+
+            return View();
+        }
     }
 }
