@@ -16,13 +16,13 @@ namespace SampleMvcContacts.Controllers
             return View(model);
         }
 
-
         // GET: Contact/Details/5
         public ActionResult Details(int id)
         {
             ViewBag.Test = "Details Not required";
-            var model = this.GetPeopleModel();
-            return View(model);
+            DataAccess.PersonDataAccessManager personDataManager = new DataAccess.PersonDataAccessManager();
+            Models.Person person = personDataManager.GetPerson(id);
+            return View(person);
         }
         private List<Models.Person> GetPeopleModel()
         {
