@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/*Custom Style*/
+    table.contact tr:nth-child(even) {
+        background: #CCC;
+    }
+
+    table.contact tr:nth-child(odd) {
+        background: #FFF;
+    }
+
