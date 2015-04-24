@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SampleMvcContacts.Models.Person>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact";
+}
+
+<h2>Contact</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="contact" border="0" cellpadding="5" cellspacing="0" style="width:680px">
+    <tr style="background-color: #DAE4F0; height:19px;">
+        <td style="width:5%"><b>ID</b></td>
+        <td style="width:35%"><b>Name</b></td>
+        <td style="width:25%"><b>Email Address</b></td>
+        <td style="width:25%"><b></b></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID </td>
+            <td>
+                @item.FirstName @item.LastName
+
+            </td>
+            <td>@item.EmailAddress</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID, firstName = item.FirstName, lastName = item.LastName, emailAddress=item.EmailAddress }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID})
+            </td>
+        </tr>
+    }
+</table>
