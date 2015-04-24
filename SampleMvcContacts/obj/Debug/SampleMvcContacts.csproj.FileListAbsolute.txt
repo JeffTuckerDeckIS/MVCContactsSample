@@ -50,3 +50,6 @@ D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\bin\Newtonsoft.Json.xml
 D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\obj\Debug\SampleMvcContacts.csprojResolveAssemblyReference.cache
 D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\obj\Debug\SampleMvcContacts.dll
 D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\obj\Debug\SampleMvcContacts.pdb
+D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\bin\Dapper.dll
+D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\bin\Dapper.pdb
+D:\__Projects\JeffTuckerDeckIS\SampleMvcContacts\bin\Dapper.xml
