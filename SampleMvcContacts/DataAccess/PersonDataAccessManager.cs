@@ -107,7 +107,9 @@ namespace SampleMvcContacts.DataAccess
                 using (var connection = new OleDbConnection(this.ConnectionString))
                 {
                     connection.Open();
-                    string updateStatement = String.Format(@"UPDATE People SET FirstName = '{0}' ,LastName = '{1}' , EmailAddress = '{2}' WHERE ID = '{3}'", person.FirstName, person.LastName, person.EmailAddress, person.ID);
+                    string updateStatement = String.Format(
+                                            @"UPDATE People SET FirstName = '{0}' ,LastName = '{1}' , EmailAddress = '{2}' WHERE ID = '{3}'"
+                                                                            , person.FirstName, person.LastName, person.EmailAddress, person.ID);
                     connection.Execute(updateStatement);
                     connection.Close();
                 }

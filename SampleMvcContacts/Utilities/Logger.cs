@@ -8,21 +8,21 @@ namespace SampleMvcContacts.Utilities
 {
     public static class Logger
     {
+        /// <summary>
+        /// Write Error Log to the Log File specified in 
+        /// Web.Config file > AppSettings 
+        /// Key = "ErrorLogFile"
+        /// </summary>
+        /// <param name="errorMessage">Error Message to be written to the log file</param>
         public static void Log(string errorMessage)
-        {
-            try
-            {
-                string logFile = MakeDateFile(@"c:\temp\SampleMVCContactLog-yyyy.MM.dd.txt");
+        {           
+                string fileLocation = ConfigurationManager.AppSettings["ErrorLogFile"];
+                string logFile = MakeDateFile(fileLocation);
 
-                System.IO.StreamWriter w = System.IO.File.AppendText(logFile);
-                w.WriteLine(errorMessage);
-                w.Close();
-            }
-            catch
-            { 
-                // Please allow ASP.NET, IISUSER, or EVERYONE access to C:\temp directory.
-            }           
-
+                System.IO.StreamWriter sw = System.IO.File.AppendText(logFile);
+                sw.WriteLine("ApplicationError: " + System.DateTime.Now.ToString());                
+                sw.WriteLine(errorMessage);
+                sw.Close();        
         }
 
         /// <summary>
