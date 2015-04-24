@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SampleMvcContacts.Controllers
@@ -52,6 +49,6 @@ namespace SampleMvcContacts.Controllers
             ViewBag.Message = "This is takashi's solution to Deck Commerce DEVELOPER SCREENING MVC APPLICATION.";
 
             return View();
-        }
+        } 
     }
 }
