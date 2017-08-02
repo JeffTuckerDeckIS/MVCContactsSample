@@ -23,7 +23,8 @@ namespace SampleMvcContacts.Controllers
             DBfunctions dbFunctions = new DBfunctions();
             return View(dbFunctions.ViewPeople());
         }
-        
+
+        [HttpPost]
         public ActionResult AddPerson()
         {
             return View();

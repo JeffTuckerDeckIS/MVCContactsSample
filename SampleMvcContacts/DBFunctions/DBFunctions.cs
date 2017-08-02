@@ -78,7 +78,7 @@ public class DBfunctions
 			//Add a new person
 			CreateConnection();
 			dbConnection.Open();
-			SqlCeCommand query = new SqlCeCommand("UPDATE People SET FirstName=@FirstName,LastName=@LastName,EmailAddress=@EmailAddress WHERE ID=@ID", dbConnection);
+			SqlCeCommand query = new SqlCeCommand("UPDATE People SET FirstName=@FirstName,LastName=@LastName,EmailAddress=@EmailAddress WHERE IDs=@ID", dbConnection);
             query.Parameters.AddWithValue("@ID", person.personId);
 			query.Parameters.AddWithValue("@FirstName", person.firstName);
 			query.Parameters.AddWithValue("@LastName", person.lastName);
