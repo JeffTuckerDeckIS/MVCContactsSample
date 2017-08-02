@@ -3,42 +3,91 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using log4net;
+using System.Reflection;
 
 namespace SampleMvcContacts.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        //Default view. Lists all people in database
         public ActionResult Index()
         {
-            List<string> names = new List<string>();
+            return View();
+        }//end function
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        public ActionResult GetAllPeople()
+        {
+            DBfunctions dbFunctions = new DBfunctions();
+            return View(dbFunctions.ViewPeople());
+        }
 
-            using (OleDbConnection conn = new OleDbConnection(connectionString))
-            {
-                conn.Open();
-
-                OleDbCommand cmd = new OleDbCommand
+        [HttpPost]
+        public ActionResult AddPerson()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult AddPerson(Person person)
+        {
+            try 
+            { 
+                if(ModelState.IsValid)
                 {
-                    Connection = conn,
-                    CommandText = "select * from People",
-                    CommandType = CommandType.Text
-                };
-
-                OleDbDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    names.Add(dr["FirstName"].ToString());
+                    DBfunctions dbFunctions = new DBfunctions();
+                    dbFunctions.AddPerson(person);
+                    string displayString=String.Format("{0} {1} added to the database.",person.firstName,person.lastName);
+                    ViewBag.Message = displayString;
                 }
-                dr.Close();
+                return View();
 
             }
+            catch(Exception ex)
+            {
+                logger.Error("HomeController-AddPerson. Error:" + ex.Message);
+                return View();
+            }//end try
+        }//end function
+        
+        public ActionResult UpdatePerson(int id)
+        {
+            DBfunctions dbFunctions = new DBfunctions();
+            return View(dbFunctions.ViewPeople().Find(Person => Person.personId == id));   
+        }//end function
 
+        [HttpPost]
+        public ActionResult UpdatePerson(int id,Person person)
+        {
+            try
+            {
+                DBfunctions dbFunctions = new DBfunctions();
+                dbFunctions.UpdatePerson(person);
+                return RedirectToAction("GetAllPeople");
+            }
+            catch(Exception ex) 
+            {
+                logger.Error("HomeController-UpdatePerson. Error:" + ex.Message);
+                return View();
+            }//end try
+        }//end function
 
-            return View(names);
-        }
+        public ActionResult DeletePerson(int id)
+        {
+            try
+            {
+                DBfunctions dbFunctions = new DBfunctions();
+                dbFunctions.DeletePerson(id);
+                return RedirectToAction("GetAllPeople");
+            }
+            catch(Exception ex)
+            {
+                logger.Error("HomeController-DeletePerson. Error:" + ex.Message);
+                return RedirectToAction("GetAllPeople");
+            }
+        }//end function
+
     }
 }

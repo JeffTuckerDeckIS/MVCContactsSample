@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Person>
+
+<div style="padding: 15px;">
+    @Html.ActionLink("Create New", "AddPerson")
+</div>
+<table class="table table-striped table-bordered">
+    <thead class="thead-inverse">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emailAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emailAddress)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdatePerson", new { id = item.personId }) |
+                @Html.ActionLink("Remove", "DeletePerson", new { id = item.personId })
+            </td>
+        </tr>
+    }
+
+</table>
+

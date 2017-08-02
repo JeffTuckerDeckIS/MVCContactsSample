@@ -16,8 +16,14 @@ namespace SampleMvcContacts
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "GetAllPeople", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "AddPerson",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "AddPerson", id = UrlParameter.Optional }
+           );
         }
     }
 }
